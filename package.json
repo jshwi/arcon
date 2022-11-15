@@ -1,6 +1,6 @@
 {
   "name": "arcon",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Persistent runtime config",
   "private": true,
   "directories": {

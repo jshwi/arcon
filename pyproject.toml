@@ -53,7 +53,7 @@ maintainers = [
 name = "arcon"
 readme = "README.rst"
 repository = "https://github.com/jshwi/arcon"
-version = "0.0.0"
+version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
