@@ -19,6 +19,9 @@ skip-magic-trailing-comma = true
 
 [tool.constcheck]
 filter = true
+ignore_strings = [
+  "utf-8",
+]
 
 [tool.coverage.report]
 fail_under = 100
