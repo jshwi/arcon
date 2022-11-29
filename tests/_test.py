@@ -152,3 +152,17 @@ def test_no_toml(patch_argv: FixturePatchArgv) -> None:
     parser.add_argument(short.arg, long.arg, action="store_true")
     namespace = parser.parse_args()
     assert namespace.arg
+
+
+def test_regular_flags(patch_argv: FixturePatchArgv) -> None:
+    """Test ``arcon.ArgumentParser`` uses proper slug.
+
+    :param patch_argv: Patch commandline arguments.
+    """
+    config = {"tool": {"prog": {"this-flag": True}}}
+    Path(TOML).write_text(tomli_w.dumps(config), encoding="utf-8")
+    patch_argv("prog")
+    parser = ArgumentParser(VERSION)
+    parser.add_argument("-f", "--this-flag", action="store_true")
+    namespace = parser.parse_args()
+    assert namespace.this_flag is True

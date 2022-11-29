@@ -58,9 +58,13 @@ def _get_config(prog: str) -> dict[str, _t.Any]:
     if pyproject_file is None:
         return {}
 
-    return (
-        _tomli.loads(pyproject_file.read_text()).get("tool", {}).get(prog, {})
-    )
+    return {
+        k.replace("-", "_"): v
+        for k, v in _tomli.loads(pyproject_file.read_text())
+        .get("tool", {})
+        .get(prog, {})
+        .items()
+    }
 
 
 class _DictAction(_Action):  # pylint: disable=too-few-public-methods

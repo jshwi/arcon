@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/arcon/compare/v0.1.0...HEAD)
 ------------------------------------------------------------------------
+### Fixed
+- Fix issue where dashes were not being parsed properly
 
 [0.1.0](https://github.com/jshwi/arcon/releases/tag/v0.1.0) - 2022-11-15
 ------------------------------------------------------------------------
