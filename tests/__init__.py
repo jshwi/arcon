@@ -7,7 +7,6 @@ Test package for ``arcon``.
 from __future__ import annotations
 
 import typing as _t
-from pathlib import Path as _Path
 
 from templatest.utils import VarPrefix as _VarPrefix
 from templatest.utils import VarSeq as _VarSeq
