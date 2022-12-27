@@ -118,7 +118,7 @@ class ArgumentParser(_ArgumentParser):
         usage: str | None = None,
         description: str | None = None,
         epilog: str | None = None,
-        parents: _t.Sequence[ArgumentParser] = [],
+        parents: _t.Sequence[ArgumentParser] = [],  # noqa
         formatter_class: _FormatterClass = _HelpFormatter,
         prefix_chars: str = "-",
         fromfile_prefix_chars: str | None = None,
