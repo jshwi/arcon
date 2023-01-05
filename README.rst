@@ -36,9 +36,22 @@ Persistent runtime config
 
 Child class of ``argparse.ArgumentParser``
 
-Includes version argument as a default
-
 Default values are defined through pyproject.toml
+
+``arcon.ArgumentParser`` will traverse all dirs up to the root for pyproject.toml config
+
+Once found, the the config will be parsed for the ``prog`` attribute belonging to ``tool``
+
+For example, a toml file containing the following
+
+.. code-block:: toml
+
+    [tool.prog]
+    key = "value"
+
+Will set the default value of ``-k/--key`` to ``value``
+
+Includes version argument as a default
 
 Includes additional argument adding methods
 
