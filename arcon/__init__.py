@@ -29,12 +29,8 @@ def _split_comma(value: str) -> list[str]:
     return [i.replace("\\,", ",") for i in _re.split(r"(?<!\\),", value)]
 
 
+# attempt to locate a pyproject.toml file if one exists in parents
 def _find_pyproject_toml(path: _Path | None = None) -> _Path | None:
-    """Attempt to locate a pyproject.toml file if one exists in parents.
-
-    :param path: Path to start search, if None start with CWD.
-    :return: Path to pyproject.toml if it exists, else None.
-    """
     if not path:
         path = _Path.cwd()
 
@@ -48,12 +44,8 @@ def _find_pyproject_toml(path: _Path | None = None) -> _Path | None:
     return _find_pyproject_toml(path.parent)
 
 
+# Get config dict object from package's tool section in toml file.
 def _get_config(prog: str) -> dict[str, _t.Any]:
-    """Get config dict object from package's tool section in toml file.
-
-    :return: Dict object; containing config if there is one, else return
-        empty.
-    """
     pyproject_file = _find_pyproject_toml()
     if pyproject_file is None:
         return {}
