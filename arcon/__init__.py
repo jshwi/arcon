@@ -180,5 +180,11 @@ class ArgumentParser(_ArgumentParser):
         :param nargs: Nargs to pass to ``add_argument``.
         :param kwargs: Kwargs to pass to ``add_argument``.
         """
-        kwargs.update(dict(action=_DictAction, default={}, nargs=nargs))
+        kwargs.update(
+            dict(
+                action=_DictAction,
+                default=kwargs.get("default", {}),
+                nargs=nargs,
+            )
+        )
         self.add_argument(*args, **kwargs)

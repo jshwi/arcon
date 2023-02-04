@@ -198,3 +198,42 @@ def test_list_default(patch_argv: FixturePatchArgv) -> None:
     parser.add_list_argument(short.list, long.list, default=[1, 2, 3])
     namespace = parser.parse_args()
     assert namespace.list == [1, 2, 3, 100, 200, 300]
+
+
+def test_dict_default(patch_argv: FixturePatchArgv) -> None:
+    """Test ``arcon.ArgumentParser.add_dict_argument`` defaults.
+
+    :param patch_argv: Patch commandline arguments.
+    """
+    patch_argv(NAME)
+
+    # no defaults, pyproject.toml, or kwarg, but the type is doct, so
+    # that is its falsy value
+    parser = ArgumentParser(VERSION)
+    parser.add_dict_argument(short.dict, long.dict)
+    namespace = parser.parse_args()
+    assert namespace.dict == {}
+
+    # if the default kwarg is provided, it is the default if there is
+    # nothing in pyproject.toml
+    parser = ArgumentParser(VERSION)
+    parser.add_dict_argument(short.dict, long.dict, default={1: 1, 2: 2, 3: 3})
+    namespace = parser.parse_args()
+    assert namespace.dict == {1: 1, 2: 2, 3: 3}
+
+    # if the default kwarg is provided it is add to by the
+    # pyproject.toml, as this is a configured value, and a default if
+    # nothing included in commandline
+    config = {TOOL: {NAME: {"dict": {"100": 100, "200": 200, "300": 300}}}}
+    Path(TOML).write_text(tomli_w.dumps(config), encoding="utf-8")
+    parser = ArgumentParser(VERSION)
+    parser.add_dict_argument(short.dict, long.dict, default={1: 1, 2: 2, 3: 3})
+    namespace = parser.parse_args()
+    assert namespace.dict == {
+        1: 1,
+        2: 2,
+        3: 3,
+        "100": 100,
+        "200": 200,
+        "300": 300,
+    }
