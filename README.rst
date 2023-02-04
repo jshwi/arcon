@@ -6,9 +6,9 @@ arcon
 .. image:: https://img.shields.io/pypi/v/arcon
     :target: https://pypi.org/project/arcon/
     :alt: PyPI
-.. image:: https://github.com/jshwi/arcon/actions/workflows/ci.yml/badge.svg
-    :target: https://github.com/jshwi/arcon/actions/workflows/ci.yml
-    :alt: CI
+.. image:: https://github.com/jshwi/arcon/actions/workflows/build.yaml/badge.svg
+    :target: https://github.com/jshwi/arcon/actions/workflows/build.yaml
+    :alt: Build
 .. image:: https://results.pre-commit.ci/badge/github/jshwi/arcon/master.svg
    :target: https://results.pre-commit.ci/latest/github/jshwi/arcon/master
    :alt: pre-commit.ci status
