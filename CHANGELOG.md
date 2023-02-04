@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/arcon/compare/v0.2.0...HEAD)
 ------------------------------------------------------------------------
+### Fixed
+- Allow default arguments for `ArgumentParser.add_list_argument`
 
 [0.2.0](https://github.com/jshwi/arcon/releases/tag/v0.2.0) - 2023-01-07
 ------------------------------------------------------------------------

@@ -166,3 +166,35 @@ def test_regular_flags(patch_argv: FixturePatchArgv) -> None:
     parser.add_argument(short.this_flag, long.this_flag, action="store_true")
     namespace = parser.parse_args()
     assert namespace.this_flag is True
+
+
+def test_list_default(patch_argv: FixturePatchArgv) -> None:
+    """Test ``arcon.ArgumentParser.add_list_argument`` defaults.
+
+    :param patch_argv: Patch commandline arguments.
+    """
+    patch_argv(NAME)
+
+    # no defaults, pyproject.toml, or kwarg, but the type is list, so
+    # that is its falsy value
+    parser = ArgumentParser(VERSION)
+    parser.add_list_argument(short.list, long.list)
+    namespace = parser.parse_args()
+    assert namespace.list == []
+
+    # if the default kwarg is provided, it is the default if there is
+    # nothing in pyproject.toml
+    parser = ArgumentParser(VERSION)
+    parser.add_list_argument(short.list, long.list, default=[1, 2, 3])
+    namespace = parser.parse_args()
+    assert namespace.list == [1, 2, 3]
+
+    # if the default kwarg is provided it is add to by the
+    # pyproject.toml, as this is a configured value, and a default if
+    # nothing included in commandline
+    config = {TOOL: {NAME: {"list": [100, 200, 300]}}}
+    Path(TOML).write_text(tomli_w.dumps(config), encoding="utf-8")
+    parser = ArgumentParser(VERSION)
+    parser.add_list_argument(short.list, long.list, default=[1, 2, 3])
+    namespace = parser.parse_args()
+    assert namespace.list == [1, 2, 3, 100, 200, 300]

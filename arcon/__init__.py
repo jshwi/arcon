@@ -162,7 +162,13 @@ class ArgumentParser(_ArgumentParser):
         :param args: Long and/or short form argument(s).
         :param kwargs: Kwargs to pass to ``add_argument``.
         """
-        kwargs.update(dict(action="store", type=_split_comma, default=[]))
+        kwargs.update(
+            dict(
+                action="store",
+                type=_split_comma,
+                default=kwargs.get("default", []),
+            )
+        )
         self.add_argument(*args, **kwargs)
 
     def add_dict_argument(
