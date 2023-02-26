@@ -1580,14 +1580,14 @@ tests = ["pytest"]
 
 [[package]]
 name = "pyaud"
-version = "5.0.1"
+version = "6.1.0"
 description = "Framework for writing Python package audits"
 category = "dev"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "pyaud-5.0.1-py3-none-any.whl", hash = "sha256:caa6dce30ae2895e70ead10af66dd65bc3e8d49c30cf4cfacd2a189654c77d27"},
-    {file = "pyaud-5.0.1.tar.gz", hash = "sha256:288b600d2377fdd5667ec86bb9f16d211d9af111a1bb21b2058512e4ae646183"},
+    {file = "pyaud-6.1.0-py3-none-any.whl", hash = "sha256:fcf0b3798c16d712f63684bf34dab800485a7d695825d9754b16f722c18dd43f"},
+    {file = "pyaud-6.1.0.tar.gz", hash = "sha256:6d03c6bee54ca5b379f6edda030bf2d2ba7599f48f1fcf93c0ba0f9f49299762"},
 ]
 
 [package.dependencies]
@@ -2792,4 +2792,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "6b3d51eb6abb25cb7c6885b384769d343852eadbf318331945d79e1b8440f961"
+content-hash = "5a0947b7bd587673e764a8da3a2fe24e536795c3303cf17950d07b3d3156ce62"
