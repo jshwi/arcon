@@ -138,7 +138,7 @@ repos:
           - "--recursive"
           - "--wrap-summaries=72"
   - repo: https://github.com/pappasam/toml-sort
-    rev: "v0.22.3"
+    rev: "v0.22.4"
     hooks:
       - id: toml-sort
         args:
@@ -154,7 +154,7 @@ repos:
     hooks:
       - id: constcheck
   - repo: https://github.com/pre-commit/pre-commit
-    rev: "v3.0.4"
+    rev: "v3.1.0"
     hooks:
       - id: validate_manifest
   - repo: https://github.com/siderolabs/conform
