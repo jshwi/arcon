@@ -98,6 +98,7 @@ exclude = '''
 '''
 modules = [
   "about-tests",
+  "commit-policy",
   "const",
   "docs",
   "files",
