@@ -89,8 +89,10 @@ sphinx-toolbox = "^3.2.0"
 templatest = "^0.7.0"
 tomli-w = "^1.0.0"
 
-[tool.pyaud]
-audit = [
+[tool.pyaud.audit]
+modules = [
+  "about-tests",
+  "commit-policy",
   "const",
   "docs",
   "files",
