@@ -97,6 +97,7 @@ exclude = '''
   )$
 '''
 modules = [
+  "about-tests",
   "const",
   "docs",
   "files",
