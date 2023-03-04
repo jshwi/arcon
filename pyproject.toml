@@ -92,6 +92,7 @@ tomli-w = "^1.0.0"
 [tool.pyaud.audit]
 modules = [
   "about-tests",
+  "commit-policy",
   "const",
   "docs",
   "files",
