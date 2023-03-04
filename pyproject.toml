@@ -91,6 +91,7 @@ tomli-w = "^1.0.0"
 
 [tool.pyaud]
 audit = [
+  "about-tests",
   "const",
   "docs",
   "files",
