@@ -43,8 +43,8 @@ arcon
     :target: https://snyk.io/test/github/jshwi/arcon/badge.svg
     :alt: Known Vulnerabilities
 .. image:: https://snyk.io/advisor/python/arcon/badge.svg
-  :target: https://snyk.io/advisor/python/arcon
-  :alt: arcon
+    :target: https://snyk.io/advisor/python/arcon
+    :alt: arcon
 
 Persistent runtime config
 -------------------------
