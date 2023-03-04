@@ -25,6 +25,7 @@ exclude: |
     | \.idea\/.*
     | tests\/TESTS\.md
     | \.github\/COMMIT_POLICY\.md
+    | docs\/conf\.py
   )$
 repos:
   - repo: local
@@ -79,6 +80,7 @@ repos:
         language: system
         entry: poetry run pyaud toc --fix
         pass_filenames: false
+      # check imports against dependencies
       - id: deptry
         name: deptry
         description: |
