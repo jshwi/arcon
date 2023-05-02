@@ -90,6 +90,12 @@ templatest = "^0.8.0"
 tomli-w = "^1.0.0"
 
 [tool.pyaud.audit]
+exclude = '''
+  (?x)^(
+    | docs\/conf\.py
+    | whitelist\.py
+  )$
+'''
 modules = [
   "about-tests",
   "commit-policy",
@@ -106,12 +112,6 @@ modules = [
   "typecheck",
   "unused"
 ]
-exclude = '''
-  (?x)^(
-    | docs\/conf\.py
-    | whitelist\.py
-  )$
-'''
 
 [tool.pytest.ini_options]
 addopts = [
