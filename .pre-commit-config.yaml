@@ -80,6 +80,7 @@ repos:
         language: system
         entry: poetry run pyaud toc --fix
         pass_filenames: false
+      # check imports against dependencies
       - id: deptry
         name: deptry
         description: |
