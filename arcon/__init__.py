@@ -143,7 +143,7 @@ class ArgumentParser(_ArgumentParser):
         )
         self.add_argument("-v", "--version", action="version", version=version)
 
-    def parse_known_args(
+    def parse_known_args(  # type: ignore
         self,
         args: _t.Sequence[str] | None = None,
         namespace: _Namespace | None = None,
