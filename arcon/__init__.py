@@ -155,11 +155,11 @@ class ArgumentParser(_ArgumentParser):
         :param kwargs: Kwargs to pass to ``add_argument``.
         """
         kwargs.update(
-            dict(
-                action="store",
-                type=_split_comma,
-                default=kwargs.get("default", []),
-            )
+            {
+                "action": "store",
+                "type": _split_comma,
+                "default": kwargs.get("default", []),
+            }
         )
         self.add_argument(*args, **kwargs)
 
@@ -173,10 +173,10 @@ class ArgumentParser(_ArgumentParser):
         :param kwargs: Kwargs to pass to ``add_argument``.
         """
         kwargs.update(
-            dict(
-                action=_DictAction,
-                default=kwargs.get("default", {}),
-                nargs=nargs,
-            )
+            {
+                "action": _DictAction,
+                "default": kwargs.get("default", {}),
+                "nargs": nargs,
+            }
         )
         self.add_argument(*args, **kwargs)
