@@ -19,6 +19,7 @@ skip-magic-trailing-comma = true
 
 [tool.constcheck]
 ignore_strings = [
+  "default",
   "store",
   "store_true",
   "utf-8"
