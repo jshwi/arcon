@@ -36,6 +36,11 @@ Test `arcon.ArgumentParser.add_list_args`.
 Test `arcon.ArgumentParser` with no config.
 
 
+### Own config
+
+Test `arcon.ArgumentParser` using config object.
+
+
 ### Regular flags
 
 Test `arcon.ArgumentParser` uses proper slug.
