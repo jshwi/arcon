@@ -21,6 +21,7 @@ exclude: |
     | \.bumpversion\.cfg
     | whitelist\.py
     | \.idea\/.*
+    | docs\/conf\.py
   )$
 repos:
   - repo: local
@@ -75,12 +76,13 @@ repos:
         language: system
         entry: poetry run pyaud toc --fix
         pass_filenames: false
+      # check imports against dependencies
       - id: deptry
         name: deptry
         description: |
           deptry is a command line tool to check for issues with dependencies
           in a Python project, such as obsolete or missing dependencies.
-        entry: deptry .
+        entry: poetry run deptry .
         language: system
         always_run: true
         pass_filenames: false
@@ -137,6 +139,7 @@ repos:
         args:
           - "--recursive"
           - "--wrap-summaries=72"
+          - "--in-place"
   - repo: https://github.com/pappasam/toml-sort
     rev: "v0.22.3"
     hooks:
