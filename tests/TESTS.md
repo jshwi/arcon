@@ -41,6 +41,11 @@ Test `arcon.ArgumentParser` with no config.
 Test `arcon.ArgumentParser` uses proper slug.
 
 
+### Store value is none
+
+Test that pyproject config is not overwritten with a None.
+
+
 ### Version
 
 Test `arcon.__version__`.

@@ -47,7 +47,7 @@ def test_version(monkeypatch: pytest.MonkeyPatch) -> None:
         (
             {TOOL: {NAME: {LIST: [string[4]]}}},
             [NAME, long.list, f"{string[1]},{string[2]},{string[3]}"],
-            [string[1], string[2], string[3], string[4]],
+            [string[4], string[1], string[2], string[3]],
         ),
     ],
     ids=["empty-conf", "with-conf"],
@@ -92,7 +92,7 @@ def test_list_parser(
                 long.dict,
                 f"{string[0]}={string[1]},{string[2]},{string[3]}",
             ],
-            {string[0]: [string[1], string[2], string[3], string[4]]},
+            {string[0]: [string[4], string[1], string[2], string[3]]},
         ),
         (
             {TOOL: {NAME: {DICT: {string[1]: [string[1]]}}}},
@@ -197,7 +197,7 @@ def test_list_default(patch_argv: FixturePatchArgv) -> None:
     parser = ArgumentParser(VERSION)
     parser.add_list_argument(short.list, long.list, default=[1, 2, 3])
     namespace = parser.parse_args()
-    assert namespace.list == [1, 2, 3, 100, 200, 300]
+    assert namespace.list == [100, 200, 300, 1, 2, 3]
 
 
 def test_dict_default(patch_argv: FixturePatchArgv) -> None:
@@ -237,3 +237,18 @@ def test_dict_default(patch_argv: FixturePatchArgv) -> None:
         "200": 200,
         "300": 300,
     }
+
+
+def test_store_value_is_none(patch_argv: FixturePatchArgv) -> None:
+    """Test that pyproject config is not overwritten with a None.
+
+    :param patch_argv: Patch commandline arguments.
+    """
+    expected = "this-is-a-value"
+    config = {TOOL: {NAME: {long.this_flag[2:]: expected}}}
+    Path(TOML).write_text(tomli_w.dumps(config), encoding="utf-8")
+    patch_argv(NAME)
+    parser = ArgumentParser(VERSION)
+    parser.add_argument(short.this_flag, long.this_flag, action="store")
+    namespace = parser.parse_args()
+    assert namespace.this_flag == expected

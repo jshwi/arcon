@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/arcon/compare/v0.2.1...HEAD)
 ------------------------------------------------------------------------
+### Fixed
+- ensure args override pyproject.toml values
 
 [0.2.1](https://github.com/jshwi/arcon/releases/tag/v0.2.1) - 2023-02-04
 ------------------------------------------------------------------------
