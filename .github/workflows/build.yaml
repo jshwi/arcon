@@ -14,7 +14,10 @@ jobs:
       matrix:
         python-version:
           - "3.8"
+          - "3.9"
+          - "3.10"
         os:
+          - macos-latest
           - ubuntu-latest
     steps:
       - name: Checkout build
@@ -38,5 +41,3 @@ jobs:
       - name: Upload coverage
         id: upload-coverage
         uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: true
