@@ -141,10 +141,14 @@ class ArgumentParser(_ArgumentParser):
         namespace: _Namespace | None = None,
     ) -> tuple[_Namespace, list[str]]:
         namespace, args = super().parse_known_args(args, namespace)
-        _mergedeep.merge(
-            namespace.__dict__,
-            _get_config(ANSI_ESCAPE.sub("", self.prog)),
-            strategy=_mergedeep.Strategy.ADDITIVE,
+        config = _get_config(ANSI_ESCAPE.sub("", self.prog))
+        namedict = namespace.__dict__
+        for key, value in config.items():
+            if key in namedict and namedict[key] in (None, False):
+                namedict[key] = value
+
+        namespace.__dict__ = _mergedeep.merge(
+            config, namedict, strategy=_mergedeep.Strategy.ADDITIVE
         )
         return namespace, args
 
