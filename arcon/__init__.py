@@ -50,13 +50,9 @@ def _get_config(prog: str) -> dict[str, _t.Any]:
     if pyproject_file is None:
         return {}
 
-    return {
-        k.replace("-", "_"): v
-        for k, v in _tomli.loads(pyproject_file.read_text())
-        .get("tool", {})
-        .get(prog, {})
-        .items()
-    }
+    return (
+        _tomli.loads(pyproject_file.read_text()).get("tool", {}).get(prog, {})
+    )
 
 
 class _DictAction(_Action):  # pylint: disable=too-few-public-methods
@@ -100,6 +96,9 @@ class ArgumentParser(_ArgumentParser):
     :param add_help: Add a -h/-help option.
     :param allow_abbrev: Allow long options to be abbreviated
         unambiguously.
+    :param config: A dict object containing default values for parser.
+        If no dict object provided than a pyproject.toml file will be
+        loaded.
     """
 
     # noinspection PyDefaultArgument
@@ -118,6 +117,7 @@ class ArgumentParser(_ArgumentParser):
         conflict_handler: str = "error",
         add_help: bool = True,
         allow_abbrev: bool = True,
+        config: dict[str, _t.Any] | None = None,
     ) -> None:
         super().__init__(
             prog,
@@ -134,6 +134,14 @@ class ArgumentParser(_ArgumentParser):
             allow_abbrev,
         )
         self.add_argument("-v", "--version", action="version", version=version)
+        self._config = {
+            k.replace("-", "_"): v
+            for k, v in _mergedeep.merge(
+                _get_config(ANSI_ESCAPE.sub("", self.prog)),
+                config or {},
+                strategy=_mergedeep.Strategy.ADDITIVE,
+            ).items()
+        }
 
     def parse_known_args(  # type: ignore
         self,
@@ -141,14 +149,13 @@ class ArgumentParser(_ArgumentParser):
         namespace: _Namespace | None = None,
     ) -> tuple[_Namespace, list[str]]:
         namespace, args = super().parse_known_args(args, namespace)
-        config = _get_config(ANSI_ESCAPE.sub("", self.prog))
         namedict = namespace.__dict__
-        for key, value in config.items():
+        for key, value in self._config.items():
             if key in namedict and namedict[key] in (None, False):
                 namedict[key] = value
 
         namespace.__dict__ = _mergedeep.merge(
-            config, namedict, strategy=_mergedeep.Strategy.ADDITIVE
+            self._config, namedict, strategy=_mergedeep.Strategy.ADDITIVE
         )
         return namespace, args
 
