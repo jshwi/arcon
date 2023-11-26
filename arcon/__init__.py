@@ -1,6 +1,7 @@
 """Persistent runtime config."""
 from __future__ import annotations
 
+import os as _os
 import re as _re
 import typing as _t
 from argparse import Action as _Action
@@ -38,7 +39,7 @@ def _find_pyproject_toml(path: _Path | None = None) -> _Path | None:
     if pyproject_toml.is_file():
         return pyproject_toml
 
-    if path == _Path("/"):
+    if str(path) == _os.path.abspath(_os.sep):
         return None
 
     return _find_pyproject_toml(path.parent)
