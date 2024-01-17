@@ -18,7 +18,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/.pyaud_cache" />
     </content>
-    <orderEntry type="jdk" jdkName="Poetry (arcon)" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
@@ -26,6 +26,9 @@
   </component>
   <component name="ReSTService">
     <option name="DOC_DIR" value="$MODULE_DIR$/docs" />
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="a0087f9e-83e7-448f-aa66-61e45e8c55ab" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
