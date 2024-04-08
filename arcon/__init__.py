@@ -149,7 +149,7 @@ class ArgumentParser(_ArgumentParser):
         self,
         args: _t.Sequence[str] | None = None,
         namespace: _Namespace | None = None,
-    ) -> tuple[_Namespace, list[str]]:
+    ) -> tuple[_Namespace | None, list[str]]:
         namespace, args = super().parse_known_args(args, namespace)
         namedict = namespace.__dict__
         for key, value in self._config.items():
