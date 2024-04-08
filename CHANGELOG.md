@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased](https://github.com/jshwi/arcon/compare/v0.3.1...HEAD)
 ------------------------------------------------------------------------
+### Added
+- version short form parameter
 
 [0.3.1](https://github.com/jshwi/arcon/releases/tag/v0.3.1) - 2023-11-26
 ------------------------------------------------------------------------
