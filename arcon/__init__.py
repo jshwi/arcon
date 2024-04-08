@@ -101,10 +101,13 @@ class ArgumentParser(_ArgumentParser):
     :param config: A dict object containing default values for parser.
         If no dict object provided than a pyproject.toml file will be
         loaded.
+    :param version_short_form: Alternative short form for version.
     """
 
     # noinspection PyDefaultArgument
-    def __init__(  # pylint: disable=dangerous-default-value,too-many-arguments
+    # pylint: disable=dangerous-default-value,too-many-arguments
+    # pylint: disable=too-many-locals
+    def __init__(
         self,
         version: str,
         prog: str | None = None,
@@ -120,6 +123,7 @@ class ArgumentParser(_ArgumentParser):
         add_help: bool = True,
         allow_abbrev: bool = True,
         config: dict[str, _t.Any] | None = None,
+        version_short_form: str = "-v",
     ) -> None:
         super().__init__(
             prog,
@@ -135,7 +139,9 @@ class ArgumentParser(_ArgumentParser):
             add_help,
             allow_abbrev,
         )
-        self.add_argument("-v", "--version", action="version", version=version)
+        self.add_argument(
+            version_short_form, "--version", action="version", version=version
+        )
         self._config = {
             k.replace("-", "_"): v
             for k, v in _mergedeep.merge(
